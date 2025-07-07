@@ -67,7 +67,11 @@ public class AppLevelController {
                                                  @PathVariable int countryId, @PathVariable Integer stateId,
                                                  @PathVariable Integer countyId, @PathVariable Integer cityId,
                                                  @PathVariable Integer communityId, @PathVariable Integer locationId) {
+<<<<<<< Updated upstream
         logger.info("Retrieving location for person with correlationId: {}", correlationId);
+=======
+        logger.info("Retrieving location");
+>>>>>>> Stashed changes
         CountryDto countryDto = appLevelService.getPersonLocation(countryId, stateId, countyId, cityId, communityId,
                 locationId);
         return ResponseEntity.ok(countryDto);

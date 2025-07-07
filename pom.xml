@@ -30,10 +30,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-<<<<<<< Updated upstream
-=======
         <otelVersion>2.8.0</otelVersion>
->>>>>>> Stashed changes
     </properties>
     <repositories>
         <repository>

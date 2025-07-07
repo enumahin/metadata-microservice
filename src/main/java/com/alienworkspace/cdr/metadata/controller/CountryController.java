@@ -105,11 +105,8 @@ public class CountryController {
     @GetMapping("/{id}")
     public ResponseEntity<CountryDto> getCountry(@RequestHeader("X-cdr-correlation-id") String correlationId,
                                                  @PathVariable int id) {
-<<<<<<< Updated upstream
-        log.debug("Retrieving country with ID: {} with correlationId: {}", id, correlationId);
-=======
+
         log.debug("Retrieving country with ID: {}", id);
->>>>>>> Stashed changes
         return ResponseEntity.ok(countryService.getCountry(id));
     }
 

@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,12 +47,12 @@ public class AppLevelController {
     /**
      * Retrieves the location of a person.
      *
-     * @param countryId  The ID of the country.
-     * @param stateId    The ID of the state.
-     * @param countyId   The ID of the county.
-     * @param cityId     The ID of the city.
+     * @param countryId   The ID of the country.
+     * @param stateId     The ID of the state.
+     * @param countyId    The ID of the county.
+     * @param cityId      The ID of the city.
      * @param communityId The ID of the community.
-     * @param locationId The ID of the location.
+     * @param locationId  The ID of the location.
      * @return The location of the person.
      */
     @Operation(summary = "Get the location of a person", description = "Retrieves the location of a person")
@@ -63,7 +62,6 @@ public class AppLevelController {
                     schema = @Schema(implementation = CountryDto.class)))
     @GetMapping("/person-location/{countryId}/{stateId}/{countyId}/{cityId}/{communityId}/{locationId}")
     ResponseEntity<CountryDto> getPersonLocation(
-                                                 @RequestHeader("X-cdr-correlation-id") String correlationId,
                                                  @PathVariable int countryId, @PathVariable Integer stateId,
                                                  @PathVariable Integer countyId, @PathVariable Integer cityId,
                                                  @PathVariable Integer communityId, @PathVariable Integer locationId) {
@@ -76,10 +74,10 @@ public class AppLevelController {
     /**
      * Retrieves the location of a person.
      *
-     * @param countryId  The ID of the country.
-     * @param stateId    The ID of the state.
-     * @param countyId   The ID of the county.
-     * @param cityId     The ID of the city.
+     * @param countryId   The ID of the country.
+     * @param stateId     The ID of the state.
+     * @param countyId    The ID of the county.
+     * @param cityId      The ID of the city.
      * @param communityId The ID of the community.
      * @return The location of the person.
      */
@@ -89,11 +87,10 @@ public class AppLevelController {
                     mediaType = "application/json",
                     schema = @Schema(implementation = CountryDto.class)))
     @GetMapping("/person-location/{countryId}/{stateId}/{countyId}/{cityId}/{communityId}")
-    ResponseEntity<CountryDto> getPersonLocation(@RequestHeader("X-cdr-correlation-id") String correlationId,
-                                                 @PathVariable int countryId, @PathVariable Integer stateId,
+    ResponseEntity<CountryDto> getPersonLocation(@PathVariable int countryId, @PathVariable Integer stateId,
                                                  @PathVariable Integer countyId, @PathVariable Integer cityId,
                                                  @PathVariable Integer communityId) {
-        logger.info("Retrieving location for person with correlationId: {}", correlationId);
+        logger.info("Retrieving location for person:");
         CountryDto countryDto = appLevelService.getPersonLocation(
                 countryId, stateId, countyId, cityId, communityId, null);
         return ResponseEntity.ok(countryDto);

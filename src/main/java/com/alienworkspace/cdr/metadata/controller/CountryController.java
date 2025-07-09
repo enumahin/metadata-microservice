@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -103,8 +102,7 @@ public class CountryController {
                     schema = @Schema(implementation = CountryDto.class)))
     @ApiResponse(responseCode = "404", description = "Country not found")
     @GetMapping("/{id}")
-    public ResponseEntity<CountryDto> getCountry(@RequestHeader("X-cdr-correlation-id") String correlationId,
-                                                 @PathVariable int id) {
+    public ResponseEntity<CountryDto> getCountry(@PathVariable int id) {
 
         log.debug("Retrieving country with ID: {}", id);
         return ResponseEntity.ok(countryService.getCountry(id));
